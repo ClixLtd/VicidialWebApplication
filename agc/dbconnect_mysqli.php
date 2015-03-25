@@ -38,12 +38,15 @@ if ( file_exists("/etc/astguiclient.conf") )
 else
 	{
 	#defaults for DB connection
-	$VARDB_server = 'localhost';
-	$VARDB_port = '3306';
-	$VARDB_user = 'cron';
-	$VARDB_pass = '1234';
-	$VARDB_database = '1234';
-	$WeBServeRRooT = '/usr/local/apache2/htdocs';
+#defaults for DB connection
+        $VARDB_server = $configVars['VARDB_server'];
+        $VARDB_port = $configVars['VARDB_port'];
+        $VARDB_user = $configVars['VARDB_user'];
+        $VARDB_pass = $configVars['VARDB_pass'];
+        $VARDB_database = $configVars['VARDB_database'];
+        $WeBServeRRooT = $configVars['WeBServeRRooT'];
+        $VARDB_custom_user = $configVars['VARDB_custom_user'];
+        $VARDB_custom_pass = $configVars['VARDB_custom_pass'];
 	}
 
 $link=mysqli_connect("$VARDB_server", "$VARDB_user", "$VARDB_pass", "$VARDB_database", $VARDB_port);
