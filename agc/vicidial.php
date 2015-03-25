@@ -15663,7 +15663,7 @@ $zi=2;
 	else
         {echo "$label_postal_code: </td><td align=\"left\"><font class=\"body_text\"><input type=\"text\" size=\"14\" name=\"postal_code\" id=\"postal_code\" maxlength=\"10\" class=\"cust_form\" value=\"\" />";}
 
-    echo "</td></tr><tr><td align=\"right\"><font class=\"body_text\">";
+    echo "</td></tr><tr><td colspan=\"6\" align=\"right\"><button type=\"button\" id=\"postcode-btn\">PostCode Lookup</button></td></tr><tr><td align=\"right\"><font class=\"body_text\">";
 
 	if ($label_province == '---HIDE---')
         {echo " </td><td align=\"left\"><input type=\"hidden\" name=\"province\" id=\"province\" value=\"\" />";}
@@ -16753,7 +16753,34 @@ if ($agent_display_dialable_leads > 0)
 
 </form>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+$(function(){
+    $('#postcode-btn').on('click', function(e){
+        var scope = this;
+        if($('#postal_code').val().length > 1) {
+            $(scope).prop('disabled', true).text('Searching...');
+            var houseNumber = prompt("Please enter your name", $('#address1').val().match(/\d+/));
 
+            $.post('https://api.mysecureportal.net/externals/postcode', {
+                'postcode': $('#postal_code').val(),
+                'houseNumber': houseNumber
+            }, function (data) {
+                $('#address1').val(data.address1);
+                $('#address2').val(data.address2);
+                $('#address3').val(data.address3);
+                $('#city').val(data.town);
+                $('#postal_code').val(data.postal_code);
+                $('#province').val(data.county);
+            }, 'json').fail(function (o, s, m) {
+                alert('Error: Failed to lookup postcode manual input needed.');
+            }).always(function(){
+                $(scope).prop('disabled', false).text('PostCode Lookup');
+            });
+        }
+    });
+});
+</script>
 </body>
 </html>
 
