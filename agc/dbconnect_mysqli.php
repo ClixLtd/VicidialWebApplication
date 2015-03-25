@@ -38,7 +38,12 @@ if ( file_exists("/etc/astguiclient.conf") )
 else
 	{
 	#defaults for DB connection
-#defaults for DB connection
+
+$company = explode(".", getenv("SERVER_NAME"));
+$configFile = "../../Scripts/diallers/". $company[0] ."_config.php";
+require_once($configFile);
+$configVars = clix_config();
+
         $VARDB_server = $configVars['VARDB_server'];
         $VARDB_port = $configVars['VARDB_port'];
         $VARDB_user = $configVars['VARDB_user'];
