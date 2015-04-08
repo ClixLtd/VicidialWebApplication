@@ -16769,9 +16769,9 @@ $(function(){
                     return;
                 }
 
-                $('.postcode-select').find('li:not(.stay)').remove();
+                $('#postcode-select').find('li:not(.stay)').remove();
                 $.each(data, function(k,v){
-                    $('.postcode-select').append($('<option>').attr('data-address', JSON.stringify(v)).text([data.address1, data.address2].join(', ')));
+                    $('#postcode-select').append($('<option>').attr('data-address', JSON.stringify(v)).text([data.address1, data.address2].join(', ')));
                 });
             }, 'json').fail(function (o, s, m) {
                 alert('Error: Failed to lookup postcode manual input needed.');
@@ -16782,7 +16782,7 @@ $(function(){
     });
 
     //
-    $('.postcode-select').on('change', function(e){
+    $('#postcode-select').on('change', function(e){
         var address = $.parseJSON($('li:selected', this).attr('data-address'));
         $('#address1').val(address.address1);
         $('#address2').val(address.address2);
