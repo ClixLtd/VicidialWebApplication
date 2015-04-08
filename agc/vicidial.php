@@ -16783,7 +16783,7 @@ $(function(){
 
     //
     $('#postcode-select').on('change', function(e){
-        var address = $.parseJSON($('li:selected', this).data('data-address'));
+        var address = $('option:selected', this).data('data-address');
         $('#address1').val(address.address1);
         $('#address2').val(address.address2);
         $('#address3').val(address.address3);
