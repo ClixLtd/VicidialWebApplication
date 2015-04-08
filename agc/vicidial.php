@@ -15663,7 +15663,7 @@ $zi=2;
 	else
         {echo "$label_postal_code: </td><td align=\"left\"><font class=\"body_text\"><input type=\"text\" size=\"14\" name=\"postal_code\" id=\"postal_code\" maxlength=\"10\" class=\"cust_form\" value=\"\" />";}
 
-    echo "</td></tr><tr><td colspan=\"5\" align=\"right\"><button type=\"button\" id=\"postcode-btn\">PostCode Lookup</button></td><td align=\"left\"><select id=\"postcode-select\"><option style=\"display:none\" selected disabled>Select Address</option></select></td></tr><tr><td align=\"right\"><font class=\"body_text\">";
+    echo "</td></tr><tr><td colspan=\"5\" align=\"right\"><button type=\"button\" id=\"postcode-btn\">PostCode Lookup</button></td><td align=\"left\"><select id=\"postcode-select\"><option style=\"display:none\" class=\"stay\" selected disabled>Select Address</option></select></td></tr><tr><td align=\"right\"><font class=\"body_text\">";
 
 	if ($label_province == '---HIDE---')
         {echo " </td><td align=\"left\"><input type=\"hidden\" name=\"province\" id=\"province\" value=\"\" />";}
@@ -16769,7 +16769,7 @@ $(function(){
                     return;
                 }
 
-                $('#postcode-select').find('li:not(.stay)').remove();
+                $('#postcode-select').find('option:not(.stay)').remove();
                 $.each(data, function(k,v){
                     $('#postcode-select').append($('<option>').attr('data-address', JSON.stringify(v)).text([v.address1, v.address2].join(', ')));
                 });
