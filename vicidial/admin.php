@@ -31121,7 +31121,7 @@ if ($ADD==100)
 	if (preg_match('/CAMPAIGNUP/i', $stage))	{$SQLorder='order by campaign_id desc';			$CAMPAIGNlink='stage=CAMPAIGNUP';}
 	if (preg_match('/CALLDATEUP/i', $stage))		{$SQLorder='order by list_lastcalldate asc';	$CALLDATElink='stage=CALLDATEDOWN';}
 	if (preg_match('/CALLDATEDOWN/i', $stage))	{$SQLorder='order by list_lastcalldate desc';	$CALLDATElink='stage=CALLDATEUP';}
-	$stmt="SELECT vls.list_id,list_name,list_description,count(*) as tally,active,list_lastcalldate,campaign_id,reset_time,DATE_FORMAT(expiration_date,'%Y%m%d'),local_call_time from vicidial_lists vls,vicidial_list vl where vls.list_id=vl.list_id $LOGallowed_campaignsSQL group by list_id $SQLorder";
+	$stmt="SELECT vls.list_id,list_name,list_description,count(*) as tally,active,list_lastcalldate,campaign_id,reset_time,DATE_FORMAT(expiration_date,'%Y%m%d'),local_call_time from vicidial_lists vls,vicidial_list vl where vls.campaign_id != 'OLDDATA' AND vls.list_id=vl.list_id $LOGallowed_campaignsSQL group by list_id $SQLorder";
 	if ($SSadmin_list_counts < 1)
 		{$stmt="SELECT list_id,list_name,list_description,'X' as tally,active,list_lastcalldate,campaign_id,reset_time,DATE_FORMAT(expiration_date,'%Y%m%d'),local_call_time from vicidial_lists $whereLOGallowed_campaignsSQL $SQLorder";}
 	$rslt=mysql_to_mysqli($stmt, $link);
