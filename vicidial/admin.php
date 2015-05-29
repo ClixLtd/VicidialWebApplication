@@ -31171,7 +31171,7 @@ if ($ADD==100)
 		$o++;
 		}
 
-	$stmt="SELECT list_id,list_name,list_description,0,active,list_lastcalldate,campaign_id,reset_time,DATE_FORMAT(expiration_date,'%Y%m%d'),local_call_time from vicidial_lists where list_id NOT IN($lists_printed'') $LOGallowed_campaignsSQL;";
+	$stmt="SELECT list_id,list_name,list_description,0,active,list_lastcalldate,campaign_id,reset_time,DATE_FORMAT(expiration_date,'%Y%m%d'),local_call_time from vicidial_lists where list_id NOT IN($lists_printed'') AND campaign_id != 'OLDDATA' $LOGallowed_campaignsSQL;";
 	$rslt=mysql_to_mysqli($stmt, $link);
 	$lists_to_print = mysqli_num_rows($rslt);
 	$p=0;
